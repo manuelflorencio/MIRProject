@@ -36,13 +36,12 @@ def klapuri_extractor(inp, name):
 
 
 def main():
-    filenames = fetchFiles('/home/marcsiq/SMC/MIRProject/Dataset/Saarland', '.mp3')
-
-    for path, fname in filenames:
-    	print "Extracting " + fname
-        file_location = path + "/" + fname
-        file_name, extension = os.path.splitext(fname)
-        klapuri_extractor(file_location, file_name)
+	filenames = fetchFiles(os.getcwd() + '/Dataset/Saarland', '.mp3')
+	for path, fname in filenames:
+		print "Extracting " + fname
+		file_location = path + "/" + fname
+		file_name, extension = os.path.splitext(fname)
+		klapuri_extractor(file_location, file_name)
   
 
 if __name__ == "__main__":
