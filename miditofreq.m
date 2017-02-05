@@ -19,12 +19,3 @@ function [  ] = miditofreq(in_path, out_path, filename )
     
     dlmwrite(strcat(out_path, f, 'f0s'),f0s','precision','%10.4f', 'delimiter', '\t');
 end
-
-function freq = midi2freq(midiNote)
-    % Converts midiNote to a frequency in Hz
-    if isempty(midiNote)
-        freq = [];
-    else
-        freq =(440/32)*2.^((midiNote-9)/12).*(midiNote>0);
-    end
-end

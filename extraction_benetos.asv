@@ -1,7 +1,7 @@
 clear all;
 
-
-cd('Benetos')
+addpath('Benetos');
+addpath('matlab-midi-master\src');
 
 % Inputs:
 %  filename filename for .wav file
@@ -26,29 +26,5 @@ sh = 1;
 [benetosResults] = transcription(filename_audio,iter,S,sz,su,sh);
 
 
-cd('..')
-cd('evaluation')
-
-%Save the output in a file
-csvwrite('dataBenetos.txt',benetosResults);
-
-cd('..')
-
-
-%%Second step, run the Klaputi's code which is in Essentia%%
-cd('Klapuri')
-%%Make python code to use the code of Klapuri and save the results in a
-%%file
-
-!python extraction_klapuri.py
-
-cd('..')
-
-
-%%Third step, run the code to evaluate
-cd('evaluation')
-%%Python code to evaluate the results of the files with the ground truth
-%%http://scikit-learn.org/stable/modules/generated/sklearn.metrics.precision_recall_fscore_support.html
-!python evaluation.py
-
-cd('..')
+f0s = zeros(max(sum(PR>1,1))+1,size(PR,2));
+    f0s(1,:) = t;

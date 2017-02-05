@@ -1,6 +1,6 @@
 function [intCQT] = computeVQT(filename)
 
-addpath('VQT');
+addpath('Benetos/VQT');
 
 % PARAMETERS
 fs = 44100;
@@ -11,7 +11,7 @@ fmax = fs/2;
 
 
 % Load .wav file
-[x,fs, bits] = wavread(filename);
+[x,fs] = audioread(filename);
 if (size(x,2) == 2) y = mean(x')'; else y=x; end;
 if (fs ~= 44100) y = resample(y,44100,fs); end;
 fs = 44100;
